@@ -5,6 +5,7 @@ import { Button, PageHeader } from '../components';
 import { brands as initialBrands } from '../api/mockData';
 import { useModal } from '../hooks/useModal';
 import { HiPlus } from 'react-icons/hi2';
+import { brandStats } from '../data/pageStats';
 
 export default function BrandsPage() {
   const [brands, setBrands] = useState(initialBrands);
@@ -29,7 +30,9 @@ export default function BrandsPage() {
     <div>
       <PageHeader 
         title="Brands" 
-        crumbs={[{ label: 'Dashboard', path: '/' }, { label: 'Products' }, { label: 'Brands' }]}
+        description="Manage product brands and partnerships."
+        crumbs={[{ label: 'Dashboard', path: '/' }, { label: 'Brands' }]}
+        stats={brandStats}
       >
         <Button className="bg-blue-600 hover:bg-blue-700 text-white shadow-sm" onClick={addModal.open}>
           <HiPlus className="h-4 w-4" />

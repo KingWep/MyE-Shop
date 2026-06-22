@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { PageHeader, Badge, Button } from '../components';
+import { cancelationStats } from '../data/pageStats';
 import { HiOutlineMagnifyingGlass, HiOutlineFunnel } from 'react-icons/hi2';
 import { orders } from '../api/mockData';
 import { formatDate, formatCurrency } from '../utils/formatters';
@@ -21,7 +22,9 @@ export default function CancelationsPage() {
     <div className="space-y-6">
       <PageHeader 
         title="Cancelations" 
-        crumbs={[{ label: 'Dashboard', path: '/' }, { label: 'Orders' }, { label: 'Cancelations' }]}
+        description="Review and process order cancelation requests."
+        crumbs={[{ label: 'Dashboard', path: '/' }, { label: 'Cancelations' }]}
+        stats={cancelationStats}
       />
 
       {/* Toolbar */}

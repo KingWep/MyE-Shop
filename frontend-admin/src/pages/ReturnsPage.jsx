@@ -3,6 +3,7 @@ import ReturnsTable from '../features/returns/ReturnsTable';
 import { returns as initialReturns } from '../api/mockData';
 import Badge from '../components/ui/Badge';
 import { PageHeader } from '../components';
+import { returnStats } from '../data/pageStats';
 
 export default function ReturnsPage() {
   const [returns, setReturns] = useState(initialReturns);
@@ -26,8 +27,10 @@ export default function ReturnsPage() {
   return (
     <div>
       <PageHeader 
-        title="Returns & Refunds" 
+        title="Returns" 
+        description="Process and track customer product returns."
         crumbs={[{ label: 'Dashboard', path: '/' }, { label: 'Returns' }]}
+        stats={returnStats}
       />
 
       {/* Summary */}

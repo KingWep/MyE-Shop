@@ -7,6 +7,7 @@ import { useSearch } from '../hooks/useSearch';
 import { useFilter } from '../hooks/useFilter';
 import { Button, PageHeader } from '../components';
 import { HiPlus } from 'react-icons/hi2';
+import { productStats } from '../data/pageStats';
 
 export default function ProductsPage() {
   const [products, setProducts] = useState(initialProducts);
@@ -27,7 +28,9 @@ export default function ProductsPage() {
     <div>
       <PageHeader 
         title="Products" 
+        description="Manage your product inventory and pricing."
         crumbs={[{ label: 'Dashboard', path: '/' }, { label: 'Products' }]}
+        stats={productStats}
       >
         <Link to="/products/add">
           <Button className="bg-blue-600 hover:bg-blue-700 text-white shadow-sm">

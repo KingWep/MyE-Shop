@@ -19,7 +19,7 @@ const ICONS = {
   refunds:    HiOutlineArrowPath,
   transactions: HiOutlineClipboardDocumentList,
   customers:  HiOutlineUsers,
-  customerGroups: HiOutlineUserGroup,
+  'customer-groups': HiOutlineUserGroup,
   products:   HiOutlineShoppingBag,
   categories: HiOutlineTag,
   brands:     HiOutlineBuildingStorefront,
@@ -95,7 +95,7 @@ export default function Sidebar() {
                 )}
                 <ul className="space-y-0.5">
                   {groupItems.map(item => {
-                    const Icon = ICONS[item.icon];
+                    const Icon = ICONS[item.icon] || HiOutlineClipboardDocumentList;
                     const active = isActive(item.path);
                     return (
                       <li key={item.path}>

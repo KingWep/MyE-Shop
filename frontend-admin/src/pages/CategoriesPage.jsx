@@ -3,6 +3,7 @@ import CategoriesTable from '../features/categories/CategoriesTable';
 import CategoryModal from '../features/categories/CategoryModal';
 import { Button, PageHeader } from '../components';
 import { categories as initialCategories } from '../api/mockData';
+import { categoryStats } from '../data/pageStats';
 import { useModal } from '../hooks/useModal';
 import { HiPlus } from 'react-icons/hi2';
 
@@ -26,6 +27,7 @@ export default function CategoriesPage() {
       <PageHeader 
         title="Categories" 
         crumbs={[{ label: 'Dashboard', path: '/' }, { label: 'Products', path: '/products' }, { label: 'Categories' }]}
+        stats={categoryStats}
       >
         <Button className="bg-blue-600 hover:bg-blue-700 text-white shadow-sm" onClick={addModal.open}>
           <HiPlus className="h-4 w-4" />

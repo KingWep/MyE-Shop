@@ -3,6 +3,7 @@ import { customers } from '../api/mockData';
 import { HiOutlineMagnifyingGlass } from 'react-icons/hi2';
 import { useState } from 'react';
 import { PageHeader } from '../components';
+import { customerStats } from '../data/pageStats';
 
 export default function CustomersPage() {
   const [search, setSearch] = useState('');
@@ -16,7 +17,9 @@ export default function CustomersPage() {
     <div>
       <PageHeader 
         title="Customers" 
+        description="View and manage customer profiles and activity."
         crumbs={[{ label: 'Dashboard', path: '/' }, { label: 'Customers' }]}
+        stats={customerStats}
       />
 
       {/* Search */}

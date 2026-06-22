@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { PageHeader, Badge, Button } from '../components';
+import { refundStats } from '../data/pageStats';
 import { HiOutlineMagnifyingGlass, HiOutlineFunnel } from 'react-icons/hi2';
 import { orders } from '../api/mockData';
 import { formatDate, formatCurrency } from '../utils/formatters';
@@ -23,7 +24,9 @@ export default function RefundsPage() {
     <div className="space-y-6">
       <PageHeader 
         title="Refunds" 
+        description="Manage customer refunds and financial adjustments."
         crumbs={[{ label: 'Dashboard', path: '/' }, { label: 'Payments' }, { label: 'Refunds' }]}
+        stats={refundStats}
       />
 
       <div className="card flex flex-col sm:flex-row justify-between gap-4">
