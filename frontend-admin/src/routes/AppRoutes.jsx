@@ -15,10 +15,12 @@ import TransactionsPage   from '../pages/TransactionsPage';
 import CustomersPage        from '../pages/CustomersPage';
 import CustomerDetailPage   from '../pages/CustomerDetailPage';
 import CustomerGroupsPage   from '../pages/CustomerGroupsPage';
+import AddCustomerGroupPage from '../pages/AddCustomerGroupPage';
 import ProductsPage       from '../pages/ProductsPage';
 import AddProductPage     from '../pages/AddProductPage';
 import EditProductPage    from '../pages/EditProductPage';
 import CategoriesPage     from '../pages/CategoriesPage';
+import AddCategoryPage    from '../pages/AddCategoryPage';
 import BrandsPage         from '../pages/BrandsPage';
 import AddBrandPage       from '../pages/AddBrandPage';
 import SettingsPage       from '../pages/SettingsPage';
@@ -49,14 +51,19 @@ export default function AppRoutes() {
         <Route path="customers"         element={<CustomersPage />} />
         <Route path="customers/:id"     element={<CustomerDetailPage />} />
         <Route path="customer-groups"   element={<CustomerGroupsPage />} />
+        <Route path="customer-groups/add"      element={<AddCustomerGroupPage />} />
+        <Route path="customer-groups/edit/:id" element={<AddCustomerGroupPage />} />
 
         {/* Products group */}
         <Route path="products"          element={<ProductsPage />} />
         <Route path="products/add"      element={<AddProductPage />} />
         <Route path="products/edit/:id" element={<EditProductPage />} />
         <Route path="categories"        element={<CategoriesPage />} />
+        <Route path="categories/add"      element={<AddCategoryPage />} />
+        <Route path="categories/edit/:id" element={<AddCategoryPage />} />
         <Route path="brands"            element={<BrandsPage />} />
         <Route path="brands/add"        element={<AddBrandPage />} />
+        <Route path="brands/edit/:id"   element={<AddBrandPage />} />
 
         {/* Reports group */}
         <Route path="sales-report"      element={<ReportsPage />} />

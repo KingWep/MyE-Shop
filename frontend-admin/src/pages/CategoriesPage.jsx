@@ -1,23 +1,17 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import CategoriesTable from '../features/categories/CategoriesTable';
-import CategoryModal from '../features/categories/CategoryModal';
 import { Button, PageHeader } from '../components';
 import { categories as initialCategories } from '../api/mockData';
 import { categoryStats } from '../data/pageStats';
-import { useModal } from '../hooks/useModal';
 import { HiPlus } from 'react-icons/hi2';
 
 export default function CategoriesPage() {
   const [categories, setCategories] = useState(initialCategories);
-  const addModal = useModal();
-  const editModal = useModal();
+  const navigate = useNavigate();
 
   const handleSave = (data) => {
-    if (data.id) {
-      setCategories(prev => prev.map(c => c.id === data.id ? { ...c, ...data } : c));
-    } else {
-      setCategories(prev => [...prev, { ...data, id: Date.now(), products: 0, image: `https://placehold.co/48x48/6366f1/fff?text=${data.name[0]}` }]);
-    }
+    // API logic here
   };
 
   const handleDelete = (id) => setCategories(prev => prev.filter(c => c.id !== id));
@@ -29,7 +23,7 @@ export default function CategoriesPage() {
         crumbs={[{ label: 'Dashboard', path: '/' }, { label: 'Products', path: '/products' }, { label: 'Categories' }]}
         stats={categoryStats}
       >
-        <Button className="bg-blue-600 hover:bg-blue-700 text-white shadow-sm" onClick={addModal.open}>
+        <Button className="bg-blue-600 hover:bg-blue-700 text-white shadow-sm" onClick={() => navigate('/categories/add')}>
           <HiPlus className="h-4 w-4" />
           Add Category
         </Button>
@@ -37,20 +31,8 @@ export default function CategoriesPage() {
 
       <CategoriesTable
         categories={categories}
-        onEdit={editModal.open}
+        onEdit={(cat) => navigate(`/categories/edit/${cat.id}`)}
         onDelete={handleDelete}
-      />
-
-      <CategoryModal
-        isOpen={addModal.isOpen}
-        onClose={addModal.close}
-        onSave={handleSave}
-      />
-      <CategoryModal
-        isOpen={editModal.isOpen}
-        onClose={editModal.close}
-        initialData={editModal.data}
-        onSave={handleSave}
       />
     </div>
   );

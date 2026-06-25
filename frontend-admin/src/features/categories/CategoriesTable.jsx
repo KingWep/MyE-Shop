@@ -5,6 +5,7 @@ import Button from '../../components/ui/Button';
 import { ConfirmModal } from '../../components/ui/Modal';
 import { useModal } from '../../hooks/useModal';
 import { HiOutlinePencilSquare, HiOutlineTrash } from 'react-icons/hi2';
+import DeleteButton from '../../components/ui/DeleteButton';
 
 export default function CategoriesTable({ categories, onEdit, onDelete }) {
   const confirmModal = useModal();
@@ -31,11 +32,16 @@ export default function CategoriesTable({ categories, onEdit, onDelete }) {
         </div>
       ),
     },
-    { key: 'description', label: 'Description',
-      render: val => <span className="text-sm text-slate-500 line-clamp-1 max-w-xs">{val}</span> },
-    { key: 'products', label: 'Products', align: 'center',
-      render: val => <span className="font-semibold text-slate-700">{val}</span> },
-    { key: 'status', label: 'Status',
+    {
+      key: 'description', label: 'Description',
+      render: val => <span className="text-sm text-slate-500 line-clamp-1 max-w-xs">{val}</span>
+    },
+    {
+      key: 'products', label: 'Products', align: 'center',
+      render: val => <span className="font-semibold text-slate-700">{val}</span>
+    },
+    {
+      key: 'status', label: 'Status',
       render: val => (
         <Badge variant={val === 'active' ? 'success' : 'default'} dot>
           {val === 'active' ? 'Active' : 'Inactive'}
@@ -52,12 +58,16 @@ export default function CategoriesTable({ categories, onEdit, onDelete }) {
           >
             <HiOutlinePencilSquare className="h-4 w-4" />
           </button>
-          <button
+          <DeleteButton
+            onConfirm={() => onDelete?.(row.id)}
+            className="flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-red-50 hover:text-red-600 transition-colors"
+          />
+          {/* <button
             onClick={() => confirmModal.open(row)}
             className="flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-red-50 hover:text-red-600 transition-colors"
           >
             <HiOutlineTrash className="h-4 w-4" />
-          </button>
+          </button> */}
         </div>
       ),
     },

@@ -23,11 +23,11 @@ export default function ProductsPage() {
   });
 
   const handleDelete = (id) => setProducts(prev => prev.filter(p => p.id !== id));
-
+  // You can keep your sleek single-line function here!
   return (
     <div>
-      <PageHeader 
-        title="Products" 
+      <PageHeader
+        title="Products"
         description="Manage your product inventory and pricing."
         crumbs={[{ label: 'Dashboard', path: '/' }, { label: 'Products' }]}
         stats={productStats}

@@ -1,5 +1,3 @@
-// src/pages/PaymentsPage.jsx
-// Payment Details page – matches the design screenshot
 import PaymentDetailsTable from '../features/payments/PaymentDetailsTable';
 import { paymentDetails, paymentStats } from '../api/mockTransactions';
 

@@ -1,10 +1,14 @@
 import { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useParams } from 'react-router-dom';
+import { useEffect } from 'react';
 import { HiOutlineCloudArrowUp, HiOutlineGlobeAlt, HiOutlinePhoto, HiOutlineInformationCircle } from 'react-icons/hi2';
 import Button from '../components/ui/Button';
 
 export default function AddBrandPage() {
   const navigate = useNavigate();
+  const { id } = useParams();
+  const isEdit = Boolean(id);
+
   const [form, setForm] = useState({
     name: '',
     slug: '',
@@ -15,19 +19,35 @@ export default function AddBrandPage() {
     sortOrder: '',
   });
 
+  // Fetch initial data if isEdit
+  useEffect(() => {
+    if (isEdit) {
+      // Mock fetch
+      setForm({
+        name: 'Existing Brand',
+        slug: 'existing-brand',
+        description: 'This is an existing brand description.',
+        category: 'Electronics',
+        website: 'https://example.com',
+        status: 'active',
+        sortOrder: '0',
+      });
+    }
+  }, [isEdit, id]);
+
   return (
     <div className="mx-auto max-w-5xl space-y-6 pb-12">
       {/* Page Header (replicates the specific layout) */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 py-4">
         <div>
-          <h2 className="text-2xl font-bold text-slate-900">Add Brand</h2>
+          <h2 className="text-2xl font-bold text-slate-900">{isEdit ? 'Edit Brand' : 'Add Brand'}</h2>
           {/* Breadcrumbs for page header */}
           <div className="mt-1 flex items-center gap-2 text-xs font-medium text-slate-500">
             <Link to="/" className="hover:text-blue-600 transition-colors">Dashboard</Link>
             <span className="text-slate-300">›</span>
             <Link to="/brands" className="hover:text-blue-600 transition-colors">Brands</Link>
             <span className="text-slate-300">›</span>
-            <span className="text-slate-400">Add Brand</span>
+            <span className="text-slate-400">{isEdit ? 'Edit Brand' : 'Add Brand'}</span>
           </div>
         </div>
         <div className="flex items-center gap-3">
@@ -35,7 +55,7 @@ export default function AddBrandPage() {
             Cancel
           </Button>
           <Button className="bg-blue-600 hover:bg-blue-700 text-white shadow-sm">
-            Save Brand
+            {isEdit ? 'Update Brand' : 'Save Brand'}
           </Button>
         </div>
       </div>

@@ -18,16 +18,17 @@ import {
   HiOutlineCurrencyDollar,
   HiOutlineUsers,
 } from 'react-icons/hi2';
+import DeleteButton from '../../components/ui/DeleteButton';
 
 // ── Group type badge colors ────────────────────────────────────────────────────
 const TYPE_STYLES = {
-  VIP:        'bg-purple-100 text-purple-700',
-  Loyalty:    'bg-blue-100 text-blue-700',
-  Wholesale:  'bg-violet-100 text-violet-700',
-  Default:    'bg-slate-100 text-slate-600',
+  VIP: 'bg-purple-100 text-purple-700',
+  Loyalty: 'bg-blue-100 text-blue-700',
+  Wholesale: 'bg-violet-100 text-violet-700',
+  Default: 'bg-slate-100 text-slate-600',
   Behavioral: 'bg-orange-100 text-orange-700',
-  Segment:    'bg-teal-100 text-teal-700',
-  Corporate:  'bg-indigo-100 text-indigo-700',
+  Segment: 'bg-teal-100 text-teal-700',
+  Corporate: 'bg-indigo-100 text-indigo-700',
 };
 
 // ── Summary stat card ─────────────────────────────────────────────────────────
@@ -56,7 +57,7 @@ function StatCard({ icon: Icon, iconBg, label, value, sub, isCurrency }) {
 // ── Main component ─────────────────────────────────────────────────────────────
 const PAGE_SIZE = 10;
 
-export default function CustomerGroupsTable({ groups, stats, onAdd }) {
+export default function CustomerGroupsTable({ groups, stats, onEdit }) {
   const [search, setSearch] = useState('');
   const [statusFilter, setStatusFilter] = useState('');
   const [typeFilter, setTypeFilter] = useState('');
@@ -251,17 +252,16 @@ export default function CustomerGroupsTable({ groups, stats, onAdd }) {
                         <HiOutlineEye className="h-4 w-4" />
                       </button>
                       <button
+                        onClick={() => onEdit?.(g)}
                         title="Edit"
                         className="inline-flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-amber-50 hover:text-amber-600 transition-colors"
                       >
                         <HiOutlinePencil className="h-4 w-4" />
                       </button>
-                      <button
-                        title="Delete"
-                        className="inline-flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-red-50 hover:text-red-600 transition-colors"
-                      >
-                        <HiOutlineTrash className="h-4 w-4" />
-                      </button>
+                      <DeleteButton
+                        onConfirm={() => onDelete?.(g.id)}
+                        className="flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-red-50 hover:text-red-600 transition-colors"
+                      />
                     </div>
                   </td>
 

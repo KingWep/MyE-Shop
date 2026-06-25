@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { products } from '../api/mockData';
 import { PageHeader } from '../components';
+import ProductForm from '../features/products/ProductForm';
 
 export default function EditProductPage() {
   const { id } = useParams();

@@ -1,5 +1,6 @@
 import { HiOutlinePencilSquare, HiOutlineTrash, HiOutlineGlobeAlt } from 'react-icons/hi2';
 import Badge from '../../components/ui/Badge';
+import DeleteButton from '../../components/ui/DeleteButton';
 
 export default function BrandsGrid({ brands, onEdit, onDelete }) {
   return (
@@ -22,12 +23,10 @@ export default function BrandsGrid({ brands, onEdit, onDelete }) {
               >
                 <HiOutlinePencilSquare className="h-4 w-4" />
               </button>
-              <button
-                onClick={() => onDelete?.(brand)}
-                className="flex h-7 w-7 items-center justify-center rounded-lg text-slate-400 hover:bg-red-50 hover:text-red-600 transition-colors"
-              >
-                <HiOutlineTrash className="h-4 w-4" />
-              </button>
+              <DeleteButton
+                onConfirm={() => onDelete?.(brand.id)}
+                className="flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-red-50 hover:text-red-600 transition-colors"
+              />
             </div>
           </div>
 

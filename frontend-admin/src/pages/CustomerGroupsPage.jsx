@@ -1,10 +1,11 @@
-// src/pages/CustomerGroupsPage.jsx
+import { useNavigate } from 'react-router-dom';
 import { PageHeader } from '../components';
 import CustomerGroupsTable from '../features/customers/CustomerGroupsTable';
 import { customerGroups, customerGroupStats } from '../api/mockCustomerGroups';
 import { HiPlus } from 'react-icons/hi2';
 
 export default function CustomerGroupsPage() {
+  const navigate = useNavigate();
   return (
     <div>
       {/* ── Page header ── */}
@@ -16,7 +17,10 @@ export default function CustomerGroupsPage() {
           { label: 'Customer Groups' },
         ]}
       >
-        <button className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 transition-colors">
+        <button 
+          onClick={() => navigate('/customer-groups/add')}
+          className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 transition-colors"
+        >
           <HiPlus className="h-4 w-4" />
           Add Group
         </button>
@@ -26,6 +30,7 @@ export default function CustomerGroupsPage() {
       <CustomerGroupsTable
         groups={customerGroups}
         stats={customerGroupStats}
+        onEdit={(group) => navigate(`/customer-groups/edit/${group.id}`)}
       />
     </div>
   );
